@@ -25,6 +25,7 @@ source=("https://freedesktop.org/software/vaapi/releases/libva-vdpau-driver/libv
         'sigfpe-crash.patch::https://bugs.freedesktop.org/attachment.cgi?id=142296'
         'fallback-x.patch'
         'implement-vaquerysurfaceattributes.patch'
+        'vdpau-driver-template.patch'
         )
 sha256sums=('155c1982f0ac3f5435ba20b221bcaa11be212c37db548cd1f2a030ffa17e9bb9'
             '776bfe4c101cdde396d8783029b288c6cd825d0cdbc782ca3d94a5f9ffb4558c'
@@ -33,6 +34,7 @@ sha256sums=('155c1982f0ac3f5435ba20b221bcaa11be212c37db548cd1f2a030ffa17e9bb9'
             'ef21397b0ed55f170e57fa1afef42b8b491491149af09b151f97ef3cc20ed0b7'
             '245dab80e14d7f302c1367ce59c96874b5fc40d253a789c0199130ae99c43599'
             'a91e11d2826715b29c2a08036f0e70ed45df7139987ff37c84b5c04c4a9c132f'
+            'SKIP'
             )
 
 prepare() {
@@ -44,6 +46,7 @@ prepare() {
   patch -d "libva-vdpau-driver-${pkgver}" -p1 -i "${srcdir}/fallback-x.patch"
   patch -d "libva-vdpau-driver-${pkgver}" -p1 -i "${srcdir}/sigfpe-crash.patch"
   patch -d "libva-vdpau-driver-${pkgver}" -p1 -i "${srcdir}/implement-vaquerysurfaceattributes.patch"
+  patch -d "libva-vdpau-driver-${pkgver}" -p2 -i "${srcdir}/vdpau-driver-template.patch"
 
   # https://bbs.archlinux.org/viewtopic.php?id=247933
   sed -e '/v4l2_buffer/d' \
